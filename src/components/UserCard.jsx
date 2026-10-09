@@ -15,10 +15,10 @@ export default function UserCard({ user }) {
 
             <div className="text-sm text-white space-y-1">
                 <p className="truncate" title={user.company.name}>
-                    <span className="font-medium text-white">Company:</span> {user.company.name}
+                    <span className="font-medium text-white"><b>Company</b>:</span> {user.company.name}
                 </p>
                 <p className="truncate" title={user.address.city}>
-                    <span className="font-medium text-white">City:</span> {user.address.city}
+                    <span className="font-medium text-white"><b>City</b>:</span> {user.address.city}
                 </p>
             </div>
         </div>
