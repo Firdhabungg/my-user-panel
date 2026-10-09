@@ -2,22 +2,23 @@ import { Link } from "react-router";
 
 export default function UserCard({ user }) {
     return (
-        <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
+        <div className="bg-gray-800 p-5 rounded-lg shadow-blue-400 shadow-md hover:shadow-lg transition-shadow">
             <Link to={`/users/${user.id}`} className="block">
-                <h3 className="text-lg font-semibold text-gray-800 truncate" title={user.name}>
+                <h3 className="text-lg text-white font-semibold truncate" title={user.name}>
+                    <i className="fa-solid fa-user mr-2 text-white"></i>
                     {user.name}
                 </h3>
+                <p className="text-sm text-blue-400 mb-4 truncate" title={user.email}>
+                    {user.email}
+                </p>
             </Link>
-            <p className="text-sm text-gray-500 mb-4 truncate" title={user.email}>
-                {user.email}
-            </p>
 
-            <div className="text-sm text-gray-900 space-y-1">
+            <div className="text-sm text-white space-y-1">
                 <p className="truncate" title={user.company.name}>
-                    <span className="font-medium text-gray-700">Perusahaan:</span> {user.company.name}
+                    <span className="font-medium text-white">Perusahaan:</span> {user.company.name}
                 </p>
                 <p className="truncate" title={user.address.city}>
-                    <span className="font-medium text-gray-700">Kota:</span> {user.address.city}
+                    <span className="font-medium text-white">Kota:</span> {user.address.city}
                 </p>
             </div>
         </div>

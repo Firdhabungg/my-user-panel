@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useEffectOnce } from "react-use";
 import { fetchUsers } from "../services/api";
 import UserCard from "../components/UserCard";
@@ -8,6 +8,7 @@ export default function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [search, setSearch] = useState("");
+    const inputRef = useRef(null);
 
     useEffectOnce(() => {
         const loadUsers = async () => {
@@ -24,10 +25,16 @@ export default function Dashboard() {
         loadUsers();
     });
 
+    useEffect(() => {
+        if (!loading && !error && inputRef.current) {
+            inputRef.current.focus();
+        }
+    }, [loading, error]);
+
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen bg-gray-900">
-                <p className="text-lg text-white animate-pulse">Memuat data pengguna...</p>
+            <div className="flex justify-center items-center min-h-screen bg-white">
+                <p className="text-lg text-gray-600 animate-pulse">Memuat data pengguna...</p>
             </div>
         );
     }
@@ -46,14 +53,15 @@ export default function Dashboard() {
     );
 
     return (
-        <div className="min-h-screen bg-gray-900 p-6 md:p-10">
+        <div className="min-h-screen bg-white p-6 md:p-10">
             <div className="max-w-7xl mx-auto">
 
-                <div className="mb-8">
-                    <input
+                <div className="mb-6 flex justify-center md:justify-end">
+                    <input 
+                        ref={inputRef}
                         type="text"
                         placeholder="Cari pengguna berdasarkan nama atau email..."
-                        className="w-full md:w-1/2 lg:w-1/3 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                        className="w-full md:w-1/2 lg:w-1/3 px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
