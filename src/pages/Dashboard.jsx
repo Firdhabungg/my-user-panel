@@ -61,7 +61,7 @@ export default function Dashboard() {
                         ref={inputRef}
                         type="text"
                         placeholder="Cari pengguna berdasarkan nama atau email..."
-                        className="w-full md:w-1/2 lg:w-1/3 px-4 py-3 rounded-lg bg-gray-200 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                        className="w-full md:w-1/2 lg:w-1/3 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                         value={search}
                         onChange={(e) => setSearch(e.target.value)}
                     />
