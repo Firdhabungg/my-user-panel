@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { useEffectOnce } from "react-use";
 import { fetchUsers } from "../services/api";
+import UserCard from "../components/UserCard";
 
 export default function Dashboard() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffectOnce(() => {
         const loadUsers = async () => {
@@ -23,17 +25,53 @@ export default function Dashboard() {
     });
 
     if (loading) {
-        return <p>Loading...</p>;
+        return (
+            <div className="flex justify-center items-center min-h-screen bg-gray-50">
+                <p className="text-lg text-white animate-pulse">Memuat data pengguna...</p>
+            </div>
+        );
     }
 
     if (error) {
-        return <p>Error: {error.message}</p>;
+        return (
+            <div className="max-w-4xl mx-auto p-4 mt-8 bg-red-50 border-l-4 border-red-500 rounded">
+                <h2 className="text-red-700 font-bold">Gagal Memuat Data</h2>
+                <p className="text-red-600">{error.message}</p>
+            </div>
+        );
     }
 
+    const filteredUsers = users.filter((user) =>
+        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
-        <>
-            <h1>Dashboard Page</h1>
-            <p>Selamat datang di halaman Dashboard</p>
-        </>
+        <div className="min-h-screen bg-gray-900 p-6 md:p-10">
+            <div className="max-w-7xl mx-auto">
+
+                <div className="mb-8">
+                    <input
+                        type="text"
+                        placeholder="Cari pengguna berdasarkan nama atau email..."
+                        className="w-full md:w-1/2 lg:w-1/3 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                </div>
+
+                {filteredUsers.length === 0 ? (
+                    <div className="text-center text-gray-400 mt-10">
+                        <p className="text-lg">Tidak ada pengguna yang cocok dengan "{searchQuery}"</p>
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                        {filteredUsers.map((user) => (
+                            <UserCard key={user.id} user={user} />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
     );
 }
