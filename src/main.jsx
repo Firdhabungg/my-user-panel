@@ -4,8 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router'
 import './index.css'
 import NotFound from './NotFound.jsx'
 import App from './components/App.jsx'
-import UsersDetail from './components/UsersDetail.jsx'
 import Dashboard from './pages/Dashboard.jsx'
+import UsersDetail from './pages/UsersDetail.jsx'
 
 
 createRoot(document.getElementById('root')).render(

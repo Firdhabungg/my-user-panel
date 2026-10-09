@@ -26,7 +26,7 @@ export default function Dashboard() {
 
     if (loading) {
         return (
-            <div className="flex justify-center items-center min-h-screen bg-gray-50">
+            <div className="flex justify-center items-center min-h-screen bg-gray-900">
                 <p className="text-lg text-white animate-pulse">Memuat data pengguna...</p>
             </div>
         );
