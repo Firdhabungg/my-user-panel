@@ -1,9 +1,13 @@
+import { Link } from "react-router";
+
 export default function UserCard({ user }) {
     return (
         <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
-            <h3 className="text-lg font-semibold text-gray-800 truncate" title={user.name}>
-                {user.name}
-            </h3>
+            <Link to={`/users/${user.id}`} className="block">
+                <h3 className="text-lg font-semibold text-gray-800 truncate" title={user.name}>
+                    {user.name}
+                </h3>
+            </Link>
             <p className="text-sm text-gray-500 mb-4 truncate" title={user.email}>
                 {user.email}
             </p>

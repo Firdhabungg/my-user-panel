@@ -1,4 +1,4 @@
-const API_URL = import.meta.env.VITE_API_PATH || 'https://jsonplaceholder.typicode.com/';
+const API_URL = import.meta.env.VITE_API_PATH;
 
 export const fetchUsers = async () => {
     try {
@@ -12,7 +12,21 @@ export const fetchUsers = async () => {
         return data;
     } catch (error) {
         console.error("Error fetching users:", error);
-
         throw error;
     }
 };
+
+export const fetchUserDetails = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}users/${id}`);
+
+        if (!response.ok) {
+            throw new Error(`Gagal mengambil data! Status HTTP: ${response.status}`);
+        }
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error("Error fetching user details:", error);
+        throw error;
+    }
+}

@@ -7,7 +7,7 @@ export default function Dashboard() {
     const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [searchQuery, setSearchQuery] = useState("");
+    const [search, setSearch] = useState("");
 
     useEffectOnce(() => {
         const loadUsers = async () => {
@@ -41,9 +41,8 @@ export default function Dashboard() {
         );
     }
 
-    const filteredUsers = users.filter((user) =>
-        user.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchQuery.toLowerCase())
+    const userFilter = users.filter((user) =>
+        user.name.toLowerCase().includes(search.toLowerCase()) || user.email.toLowerCase().includes(search.toLocaleLowerCase())
     );
 
     return (
@@ -55,18 +54,18 @@ export default function Dashboard() {
                         type="text"
                         placeholder="Cari pengguna berdasarkan nama atau email..."
                         className="w-full md:w-1/2 lg:w-1/3 px-4 py-3 rounded-lg bg-gray-800 border border-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
-                        value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)}
                     />
                 </div>
 
-                {filteredUsers.length === 0 ? (
+                {userFilter.length === 0 ? (
                     <div className="text-center text-gray-400 mt-10">
-                        <p className="text-lg">Tidak ada pengguna yang cocok dengan "{searchQuery}"</p>
+                        <p className="text-lg">Tidak ada user yang cocok dengan pencarian "{search}"</p>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                        {filteredUsers.map((user) => (
+                        {userFilter.map((user) => (
                             <UserCard key={user.id} user={user} />
                         ))}
                     </div>
