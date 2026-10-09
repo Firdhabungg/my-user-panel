@@ -57,7 +57,7 @@ export default function Dashboard() {
             <div className="max-w-7xl mx-auto">
 
                 <div className="mb-6 flex justify-center md:justify-end">
-                    <input 
+                    <input
                         ref={inputRef}
                         type="text"
                         placeholder="Cari pengguna berdasarkan nama atau email..."

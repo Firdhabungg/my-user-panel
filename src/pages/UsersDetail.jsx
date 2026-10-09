@@ -54,10 +54,10 @@ export default function UsersDetail() {
                 <div className="p-6">
                     <div className="space-y-5">
                         <div className="flex justify-center items-center">
-                                <div className="flex flex-col items-center gap-2">
-                                    <i className="fas fa-user text-blue-400 text-6xl" />
-                                    <p className="text-white text-2xl font-bold">{users.username}</p>
-                                </div>
+                            <div className="flex flex-col items-center gap-2">
+                                <i className="fas fa-user text-blue-400 text-6xl" />
+                                <p className="text-white text-2xl font-bold">{users.username}</p>
+                            </div>
                         </div>
                         <div className="grid grid-cols-1 gap-2">
                             <div className="bg-gray-900 bg-opacity-50 p-3 rounded-lg shadow-md border border-gray-600 transition-all duration-200 hover:bg-opacity-70">
