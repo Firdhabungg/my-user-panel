@@ -1,6 +1,7 @@
 @import 'tailwindcss';
-@import url('https://fonts.bunny.net/css?family=inter:200,300,400,500');
 
-body {
-    font-family: 'Inter', sans-serif;
+@layer base {
+    body {
+        font-family: 'Inter', sans-serif;
+    }
 }
